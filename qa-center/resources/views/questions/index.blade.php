@@ -16,10 +16,12 @@
                 </div>
 
                 <div class="card-body">
+                    @include('layouts._messages')
+
                     @foreach ($questions as $question)
                         <div class="media">
                             <div class="d-flex flex-column counters">
-                                <div class="votes">
+                                <div class="vote">
                                     <strong>{{ $question->votes }}</strong> {{ str_plural('vote', $question->votes) }}
                                 </div>
                                 <div class="status {{ $question->status }}">
