@@ -23,7 +23,8 @@ class CreateQuestionsTable extends Migration
             $table->integer('votes')->default(0);
             $table->unsignedInteger('best_answer_id')->nullable();
             $table->bigInteger('user_id')->unsigned();
-            $table->timestamps();
+            $table->timestamp('created_at')->nullable();
+            $table->timestamp('updated_at')->nullable();
         });
 
         Schema::table('questions', function (Blueprint $table) {

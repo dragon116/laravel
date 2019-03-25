@@ -10,11 +10,27 @@ class Answer extends Model
 {
     public function question() 
     {
-        return $this->belongsTo(Question::class);
+        return $this->belongsTo('App\Question', 'question_id');
     }
 
     public function user()
     {
-        return $this->belongsTo(User::class);
+        return $this->belongsTo('App\User', 'user_id');
+    }
+
+    public function getBodyHtmlAttribute()
+    {
+        return \Parsedown::instance()->text($this->body);
+    }
+
+    public static function boot()
+    {
+        parent::boot();
+
+        static::created(function($answer) {
+            $answer->question->increment('answers_count');
+            $answer->question->save();
+        });
+
     }
 }
