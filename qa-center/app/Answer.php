@@ -8,6 +8,8 @@ use Illuminate\Foundation\Auth\User;
 
 class Answer extends Model
 {
+    protected $fillable = ['body', 'user_id'];
+
     public function question() 
     {
         return $this->belongsTo('App\Question', 'question_id');
